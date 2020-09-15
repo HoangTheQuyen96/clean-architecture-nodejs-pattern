@@ -4,13 +4,7 @@ const mongoPrimaryDb = require("../../src/infrastructures/data-gateway/providers
 const { db } = require("../../config/env");
 
 module.exports.loadSingletons = async () => {
-  try {
- 
     await mongoPrimaryDb.connect(db.mongo.mongoPrimaryURI, { logger: console });
-  } catch (error) {
-    console.log(error)
-  }
- 
 };
 
 module.exports.logger = logger;
