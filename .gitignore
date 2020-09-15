@@ -1,0 +1,17 @@
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# dotenv environment variables file
+.env
+
+.vscode/
+.idea/
+
+node_modules/
+node_modules
+
+# Coverage directory used by tools like istanbul
+coverage
+output
+output/coverage
