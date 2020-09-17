@@ -3,7 +3,5 @@ module.exports.createTodo = (injector) => async (payload) => {
 
   const todo = await dataGateway.createTodo(payload);
 
-  return {
-    data: todo,
-  };
+  return todo
 };

@@ -38,7 +38,7 @@ beforeEach(() => {
 
 describe("Testing create todo method", () => {
   test("Should throw an error if mongo primary is not work", async () => {
-    mockInject.mongoPrimary = jest.fn().mockImplementation(() => ({
+    mockInject.mongoPrimary.mockImplementation(() => ({
       collection: jest.fn().mockReturnValue({
         insertOne: jest.fn().mockRejectedValue(mockError)
       })
