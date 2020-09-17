@@ -1,10 +1,11 @@
 const { mongoPrimaryDb } = require("../providers/ mongo-primary-db");
-const {todo} = require("../../../entities/todo")
+const { todo } = require("../../../entities/todo")
+const { TODO_COLLECTION_NAME } = require('../../common/constans')
 
 module.exports.createTodo = async ({ title, status }) => {
-  const todoColl = mongoPrimaryDb().collection(CONSTANTS.SALON_COLLECTION_NAME);
+  const todoColl = mongoPrimaryDb().collection(TODO_COLLECTION_NAME);
 
-  const {ops} = await todoColl.insertOne({
+  const { ops } = await todoColl.insertOne({
     title,
     status,
     deleted: false,
@@ -12,5 +13,8 @@ module.exports.createTodo = async ({ title, status }) => {
     updated_at: Date.now()
   })
 
-  return todo(ops[0])
+  return todo({
+    ...ops[0],
+    id: ops[0]._id
+  })
 };

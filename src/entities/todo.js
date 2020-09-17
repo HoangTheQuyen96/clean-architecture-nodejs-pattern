@@ -1,10 +1,13 @@
-const { Map } = require("immutable");
 
-const todo = ({ id, status, create_at }) =>
-  Map({
+
+const todo = ({ id, status, title, created_at }) =>
+  Object.freeze({
     id,
+    title,
     status,
-    create_at: new Date(create_at).toISOString(),
+    create_at: new Date(created_at).toISOString(),
   });
+
+
 
 module.exports.todo = todo;

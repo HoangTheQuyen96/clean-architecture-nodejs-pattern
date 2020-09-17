@@ -4,14 +4,29 @@ module.exports = async (error, req, res, next) => {
   logger.error(JSON.stringify(error.stack));
   if (!error.expose) {
     res.status(500).json({
-      message: "unexpected error",
-      error: "API_ERROR"
+      errors: [
+        {
+          code: 1000,
+          type: "API_ERROR",
+          message: "unexpected error",
+        }
+      ]
     });
   } else {
     res.status(error.detail.httpCode).json({
-      message: error.message,
-      error: error.detail.errorType,
-      data: error.data || []
+      errors: [
+        {
+          code: error.detail.code,
+          type: error.detail.errorType,
+          message: error.message,
+        }
+      ],
     });
   }
 };
+
+
+const a = {
+  message: 'error',
+
+}
