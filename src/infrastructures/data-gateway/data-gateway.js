@@ -1,6 +1,6 @@
 // todo methods
-const { createTodo } = require("./methods/todo-methods");
+const { createTodo } = require("./methods/create-todo");
 
-module.exports = {
-  createTodo,
-};
+module.exports = (dbProvider) => ({
+  createTodo: createTodo(dbProvider),
+});

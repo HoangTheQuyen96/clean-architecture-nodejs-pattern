@@ -2,7 +2,7 @@ const { Winston } = require("./providers/winston");
 
 let winston;
 const setTraceId = (traceId = "", jaegerTraceId = "", domainName = "") => {
-  winston = Winston("controller's system", "info", traceId, jaegerTraceId, domainName);
+  winston = Winston("hoangthequyen01@gmail.com", "info", traceId, jaegerTraceId, domainName);
 };
 
 const info = (data) => {

@@ -1,13 +1,11 @@
 
 
-const todo = ({ id, status, title, created_at }) =>
+const Todo = ({ id, status, title, created_at }) =>
   Object.freeze({
     id,
     title,
     status,
-    create_at: new Date(created_at).toISOString(),
+    created_at: new Date(created_at).toISOString(),
   });
 
-
-
-module.exports.todo = todo;
+module.exports.Todo = Todo;
