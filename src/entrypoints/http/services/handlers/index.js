@@ -11,4 +11,5 @@ const wrap = (fn) => async (req, res, next) => {
 
 module.exports = {
   createTodo: wrap(todoHandlers.createTodo),
+  listTodo: wrap(todoHandlers.listTodo)
 };
