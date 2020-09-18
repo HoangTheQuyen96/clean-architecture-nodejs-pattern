@@ -9,4 +9,11 @@ module.exports = {
       mongoReplicaURI: process.env.MONGO_REPLICA_URI
     },
   },
+  kafka: {
+    kafkaHost: process.env.KAFKA_HOST,
+    kafkaConnectTimeout: Number.parseFloat(process.env.KAFKA_CONNECT_TIMEOUT) || 10000,
+    kafkaTopics: {
+      [process.env.TODO_TOPIC]: process.env.TODO_TOPIC
+    }
+  }
 };
