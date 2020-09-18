@@ -1,0 +1,39 @@
+syntax = "proto3";
+package quyen.todo;
+
+import "google/api/annotations.proto";
+
+service TodoService {
+  rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {
+    option (google.api.http) = {
+        post: "/api/todos",
+        body: "*"
+      };
+  }
+
+  rpc ListTodo(ListTodoRequest) returns (ListTodoResponse) {
+    option (google.api.http) = {
+        get: "/api/todos"
+      };
+  }
+}
+
+message CreateTodoRequest{
+  string title = 1;
+  string status = 2;
+}
+
+message CreateTodoResponse{
+  string id = 1;
+  string title = 2;
+  string status = 3;
+  string created_at = 4;
+}
+
+message ListTodoRequest{
+
+}
+
+message ListTodoResponse{
+  repeated CreateTodoResponse data = 1;
+}
