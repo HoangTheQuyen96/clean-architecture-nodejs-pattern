@@ -8,7 +8,7 @@
 **Where to initiate the instances**:
 - `src/app.js` is point start of program. 
 
-## Based on the idea of developers
+## Based on the ideas and code base of developers:
 - [Duy Quach](https://github.com/quachduyy)
 - [Phu Nguyen](https://github.com/phunguyen19)
 - [Cuong Nguyen](https://github.com/CuongNgMan)
