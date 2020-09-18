@@ -6,7 +6,7 @@ init:
 	  mkdir ${dir}; \
 		cd ${dir}; \
 		echo "Cloning modules to ${dir}"; \
-		git clone https://github.com/grpc-ecosystem/grpc-gateway; \
+		# git clone https://github.com/grpc-ecosystem/grpc-gateway; \
 		git clone https://github.com/googleapis/googleapis; \
   fi;
 

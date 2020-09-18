@@ -1,6 +1,9 @@
 const path = require("path");
 
 const { createTodoHandler } = require('./handlers/create-todo-handler')
+const { listTodoHandler } = require('./handlers/list-todo-handler')
+const { wrap } = require('../../common/wrap')
+
 
 const { loadProto } = require("../../common/load-proto");
 const { buildSchema } = require("../../common/build-schema");
@@ -14,6 +17,7 @@ module.exports.todoService = {
     service,
     schema: buildSchema([todoProtoFile], service),
     handlers: {
-        CreateTodo: createTodoHandler
+        CreateTodo: wrap(createTodoHandler),
+        ListTodo: wrap(listTodoHandler),
     }
 }
