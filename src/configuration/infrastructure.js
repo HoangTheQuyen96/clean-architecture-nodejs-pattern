@@ -14,9 +14,9 @@ const loadSingletons = async () => {
             mongoReplica
         });
     } catch (error) {
-        logger.error("[MONGO] connected failure");
-        logger.error(JSON.stringify(error.stack))
-        process.exit(1)
+        logger.error(`[MONGO] connected failure ${JSON.stringify(error.stack)}`)
+        process.kill(process.pid);
+        process.exit(1);
     }
 }
 

@@ -1,9 +1,9 @@
 const express = require("express");
-const handler = require("./handlers/index");
+const handlers = require("./handlers/index");
 
 const router = express.Router();
 
-router.post("/api/todos", handler.createTodo);
-router.get('/api/todos', handler.listTodo)
+router.post("/api/todos", handlers.CreateTodo);
+router.get('/api/todos', handlers.ListTodo)
 
 module.exports = router;

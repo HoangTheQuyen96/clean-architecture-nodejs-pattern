@@ -1,7 +1,7 @@
 const { listTodoInteractor } = require("../../../../configuration/usecase");
 const { createTodoInteractor } = require('../../../../configuration/usecase')
 
-module.exports.createTodo = async (req) => {
+module.exports.createTodoHandler = async (req) => {
   const result = await createTodoInteractor(req.body);
 
   return {
@@ -10,11 +10,13 @@ module.exports.createTodo = async (req) => {
   };
 };
 
-module.exports.listTodo = async () => {
+module.exports.listTodoHandler = async () => {
   const result = await listTodoInteractor();
 
   return {
     status: 200,
-    data: result,
+    data: {
+      data: result
+    },
   };
 }

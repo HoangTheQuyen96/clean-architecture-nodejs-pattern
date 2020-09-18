@@ -10,6 +10,6 @@ const wrap = (fn) => async (req, res, next) => {
 };
 
 module.exports = {
-  createTodo: wrap(todoHandlers.createTodo),
-  listTodo: wrap(todoHandlers.listTodo)
+  CreateTodo: wrap(todoHandlers.createTodoHandler),
+  ListTodo: wrap(todoHandlers.listTodoHandler)
 };

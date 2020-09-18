@@ -15,3 +15,7 @@ node_modules
 coverage
 output
 output/coverage
+
+# protos directory
+src/entrypoints/protos/generated
+src/entrypoints/protos/third_party

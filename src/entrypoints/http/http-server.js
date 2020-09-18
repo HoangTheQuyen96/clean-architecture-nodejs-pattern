@@ -30,10 +30,11 @@ module.exports.HTTPServer = (logger = console, port) => {
 
   app.listen(port || 8000, (error) => {
     if (error) {
-      logger.error(error);
+      logger.error(`[HTTP SERVER] start error ${JSON.stringify(error.stack)}`);
+      process.kill(process.pid);
       process.exit(1);
     } else {
-      logger.info(`${"[MAIN]"} Server is listening on port ${port || 8000}`);
+      logger.info(`${"[HTTP SERVER]"} listening on port ${port || 8000}`);
     }
   });
 };
