@@ -4,6 +4,7 @@
 - `src/infrastructure` where we write the code using external resource like: database, event bus, sdk, other service... [Equivalent Frameworks and Drivers In Clean Architecture]
 - `src/usecases`: Where we write the core application logic.[Equivalent Use Cases Layer In Clean Architecture]
 - `src/configuration`: where we reverse the dependency
+
 **Where to initiate the instances**:
 - `src/app.js` is point start of program. 
 
