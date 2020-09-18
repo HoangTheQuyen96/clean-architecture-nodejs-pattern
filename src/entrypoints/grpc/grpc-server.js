@@ -2,7 +2,7 @@ const grpc = require("grpc");
 
 const { todoService } = require('./services/todo/todo-service')
 
-const loadServices = (services, server, logger = console) => {
+const loadServices = (services, server, logger) => {
     try {
         const mapSchemaToRequest = [];
         services.forEach((svc) => {
@@ -42,10 +42,10 @@ const loadServices = (services, server, logger = console) => {
     }
 }
 
-module.exports.GRPCServer = (logger = console, port) => {
+module.exports.GRPCServer = (logger, port) => {
     try {
         const server = new grpc.Server()
-        loadServices([todoService], server, console)
+        loadServices([todoService], server, logger)
 
         server.bind(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure());
         server.start();
@@ -56,5 +56,4 @@ module.exports.GRPCServer = (logger = console, port) => {
         process.kill(process.pid);
         process.exit(1);
     }
-
 }
