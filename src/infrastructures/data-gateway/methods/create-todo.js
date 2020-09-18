@@ -1,8 +1,8 @@
 const { Todo } = require("../../../entities/todo")
 const { TODO_COLLECTION_NAME } = require('../../common/constans')
 
-module.exports.createTodo = ({ mongoPrimary }) => async ({ title, status }) => {
-    const todoColl = mongoPrimary().collection(TODO_COLLECTION_NAME);
+module.exports.createTodo = (dbProvider) => async ({ title, status }) => {
+    const todoColl = dbProvider.mongoPrimary.collection(TODO_COLLECTION_NAME);
 
     const { ops } = await todoColl.insertOne({
         title,
