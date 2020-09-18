@@ -5,6 +5,7 @@ module.exports = {
   db: {
     mongo: {
       mongoPrimaryURI: process.env.MONGO_PRIMARY_URI,
+      mongoReplicaURI: process.env.MONGO_REPLICA_URI
     },
   },
 };

@@ -7,22 +7,9 @@ const { createTodo } = require("./create-todo");
 beforeEach(() => {
   mockError = new Error("Oops");
   mockInject = {
-    mongoPrimary: jest.fn().mockImplementation(() => ({
-      collection: jest.fn().mockReturnValue({
-        insertOne: jest.fn().mockResolvedValue({
-          ops: [
-            {
-              title: "Check-out at company",
-              status: "undone",
-              deleted: false,
-              created_at: 1600331128847,
-              updated_at: 1600331128847,
-              _id: '0002'
-            }
-          ]
-        })
-      })
-    }))
+    mongoPrimary: {
+      collection: jest.fn()
+    }
   };
   mockInput = {
     title: "Check-out at company",
@@ -38,14 +25,11 @@ beforeEach(() => {
 
 describe("Testing create todo method", () => {
   test("Should throw an error if mongo primary is not work", async () => {
-    mockInject.mongoPrimary.mockImplementation(() => ({
-      collection: jest.fn().mockReturnValue({
-        insertOne: jest.fn().mockRejectedValue(mockError)
-      })
-    }))
+    mockInject.mongoPrimary.collection = jest.fn().mockReturnValue({
+      insertOne: jest.fn().mockRejectedValue(mockError)
+    })
 
     const bindFn = createTodo(mockInject)
-
     let actualError;
     try {
       await bindFn(mockInput);
@@ -60,9 +44,18 @@ describe("Testing create todo method", () => {
   test("Should return a todo record", async () => {
     const expectedResult = Todo(mockTodo);
 
+    mockInject.mongoPrimary.collection = jest.fn().mockReturnValue({
+      insertOne: jest.fn().mockResolvedValue({
+        ops: [{
+          ...mockTodo,
+          _id: mockTodo.id,
+          updated_at: 1600331128847
+        }]
+      })
+    })
+
     const bindFn = createTodo(mockInject)
     const result = await bindFn(mockInput);
-
     expect(result).toEqual(expectedResult);
   });
 });
