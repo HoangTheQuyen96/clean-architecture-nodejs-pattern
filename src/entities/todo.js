@@ -1,5 +1,3 @@
-
-
 const Todo = ({ id, status, title, created_at }) => {
   return Object.freeze({
     id,
