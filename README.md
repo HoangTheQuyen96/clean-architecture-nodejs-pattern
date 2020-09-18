@@ -6,3 +6,8 @@
 - `src/configuration`: where we reverse the dependency 
 **Where to initiate the instances**:
 - `src/app.js` is the start point of application entrypoints and start the instance which is singleton like: database connection, kafka connection, ... then can get new instances of adapters
+
+## Based on the idea of developers
+- [Duy Quach](https://github.com/quachduyy)
+- [Phu Nguyen](https://github.com/phunguyen19)
+- [Cuong Nguyen](https://github.com/CuongNgMan)
