@@ -5,7 +5,7 @@ const { listTodo } = require('../usecases/todo/list-todo/interactor')
 module.exports.createTodoInteractor = createTodo({
   infra: {
     dataGateway,
-    eventBus: new eventBus()
+    eventBus
   },
 });
 
