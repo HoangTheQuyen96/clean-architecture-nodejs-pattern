@@ -15,7 +15,6 @@ pipeline {
                     branch 'master'  
                     }
                 }
-        }
             steps {
                     sh label: 'Populate dotenv for tests', script: '''cat <<EOF > .env
                     # Entrypoint HTTP Server
