@@ -5,3 +5,5 @@ const { loadSingletons } = require("./configuration/infrastructure");
   require("./configuration/entrypoint");
   require("./configuration/usecase");
 })();
+
+console.log('test jenkin tripgger')
