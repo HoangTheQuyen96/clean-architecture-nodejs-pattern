@@ -87,7 +87,6 @@ pipeline {
         stage('Development Build') {
              when {
                 branch "develop"
-                beforeAgent true
             }
             agent { dockerfile true }
             steps {
@@ -97,7 +96,6 @@ pipeline {
         stage('Development Release') {
              when {
                 branch "develop"
-                beforeAgent true
             }
             agent { dockerfile true }
             steps {
@@ -107,7 +105,6 @@ pipeline {
         stage('Production Build') {
              when {
                 branch "master"
-                beforeAgent true
             }
             agent { dockerfile true }
             steps {
@@ -117,7 +114,6 @@ pipeline {
         stage('Production Release') {
              when {
                 branch "master"
-                beforeAgent true
             }
             agent { dockerfile true }
             steps {
