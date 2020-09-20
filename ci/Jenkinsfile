@@ -49,7 +49,33 @@ pipeline {
                     MONGO_PRIMARY_URI=mongodb://localhost:27017/mydb
                     MONGO_REPLICA_URI=mongodb://localhost:27017/mydb
 
-                    KAFKA_HOST=localhost:9092
+                    KAFKA_HOST=localhost:9092    stage('Development Release') {
+            when {
+                branch "develop"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Development Release'
+            }
+        }
+        stage('Production Build') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Build'
+            }
+        }
+        stage('Production Release') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Release'
+            }
+        }
                     KAFKA_CONNECT_TIMEOUT=1000
                     TODO_TOPIC=todo_topic
                 EOF'''
