@@ -51,11 +51,12 @@ pipeline {
             }
         }
         post {
-        unstable {
-          slackSend (color: '#FFFF33', message: "Unit tests is currently in")
-        }
-        failure {
-          slackSend (color: '#FF0000', message: "Unit tests is BELOW required target: Job")
+            unstable {
+                slackSend (color: '#FFFF33', message: "Unit tests is currently in")
+            }
+            failure {
+                slackSend (color: '#FF0000', message: "Unit tests is BELOW required target: Job")
+            }
         }
       }
     }
