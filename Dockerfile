@@ -1,7 +1,11 @@
-FROM node:14.5.0-alpine
+FROM node:14.10.0-stretch
 
 WORKDIR /opt
 ENV NODE_ENV=development 
+
+RUN apt-get update && apt-get install -y build-essential python \
+  && npm install node-gyp node-pre-gyp 
+  
     
 COPY package*.json ./
 
