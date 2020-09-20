@@ -1,0 +1,65 @@
+pipeline {
+    agent any 
+    options { 
+        skipStagesAfterUnstable()
+    }
+    environment {
+        PROJECT_NAME = "clean-architecture-nodejs-pattern"
+  }
+    stages {
+        stage('Run Tests') { 
+            when {
+                anyOf {
+                    changeRequest() 
+                    branch 'develop'
+                    branch 'master'  
+                    }
+                }
+        }
+            steps {
+                    sh label: 'Populate dotenv for tests', script: '''cat <<EOF > .env
+                    # Entrypoint HTTP Server
+                    NODE_ENV=development // Should be is production to x3 app's performance
+                    ENTRYPOINT_HTTP_PORT=12000
+
+                    ENTRYPOINT_GRPC_PORT=3333
+
+                    MONGO_PRIMARY_URI=mongodb://localhost:27017/mydb
+                    MONGO_REPLICA_URI=mongodb://localhost:27017/mydb
+
+                    KAFKA_HOST=localhost:9092
+                    KAFKA_CONNECT_TIMEOUT=1000
+                    TODO_TOPIC=todo_topic
+                    EOF'''
+                sh label: 'Run tests', script: '''cp -rf /app/node_modules .    
+                                    npm install
+                                    npm run test-coverage
+                                '''
+                archiveArtifacts artifacts: "output/coverage/jest/cobertura-coverage.xml" , fingerprint: true
+                cobertura(
+                    coberturaReportFile: "output/coverage/jest/cobertura-coverage.xml",
+                    onlyStable: false,
+                    failNoReports: true,
+                    failUnhealthy: false,
+                    failUnstable: false,
+                    autoUpdateHealth: true,
+                    autoUpdateStability: false,
+                    zoomCoverageChart: true,
+                    maxNumberOfBuilds: 0,
+                    lineCoverageTargets: '80, 80, 80',
+                    conditionalCoverageTargets: '80, 80, 80',
+                    classCoverageTargets: '80, 80, 80',
+                    fileCoverageTargets: '80, 80, 80',
+                )
+                cleanWs notFailBuild: true
+                }
+                post {
+        unstable {
+          slackSend (color: '#FFFF33', message: "Unit tests is currently in ${currentBuild.currentResult} status :thunder_cloud_and_rain:  :thunder_cloud_and_rain: . There will be no deployments.  " )
+        }
+        failure {
+          slackSend (color: '#FF0000', message: "Unit tests is BELOW required target")
+        }
+      }
+    }
+}
