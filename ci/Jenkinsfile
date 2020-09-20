@@ -61,5 +61,10 @@ pipeline {
           slackSend (color: '#FF0000', message: "Unit tests is BELOW required target")
         }
       }
+<<<<<<< HEAD
+=======
+            
+        }
+>>>>>>> 47bdf34044acaa057d055e73399621957308ac30
     }
 }

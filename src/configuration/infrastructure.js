@@ -1,7 +1,17 @@
 const logger = require("../../src/infrastructures/logger/logger");
 const dataGateway = require("../infrastructures/data-gateway/data-gateway");
 const mongoDb = require("../../src/infrastructures/data-gateway/providers/ mongo-primary-db");
-const { db } = require("../../config/env");
+const { db, kafka } = require("../../config/env");
+const kafkaConfig = require("../infrastructures/event-bus/event-bus");
+
+const kafkaHost = kafka.kafkaHost;
+const kafkaConnectTimeout = kafka.kafkaConnectTimeout
+
+const eventBus = kafkaConfig({
+    kafkaHost,
+    kafkaConnectTimeout,
+    logger
+})
 
 const loadSingletons = async () => {
     try {
@@ -20,9 +30,9 @@ const loadSingletons = async () => {
     }
 }
 
-
 module.exports = {
     logger,
     loadSingletons,
+    eventBus
 }
 
