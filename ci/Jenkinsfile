@@ -24,7 +24,7 @@ def boolean hasChangesIn(String module) {
     ) == 0
 }
 pipeline { 
-    agent { dockerfile true }
+    agent any
     options {
         skipStagesAfterUnstable()
     }
@@ -37,6 +37,7 @@ pipeline {
                     branch 'master'  
                 }
             }
+            agent { dockerfile true }
             steps { 
                 sh label: 'Populate dotenv for tests', script: '''cat <<EOF > .env
                     # Entrypoint HTTP Server
@@ -82,6 +83,44 @@ pipeline {
                     slackSend (color: '#FF0000', message: "Unit tests is BELOW required target: Job")
                 }
             }
+        stage('Development Build') {
+            when {
+                branch "develop"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Development Build'
+            }
+        }
+        stage('Development Release') {
+            when {
+                branch "develop"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Development Release'
+            }
+        }
+        stage('Production Build') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Build'
+            }
+        }
+        stage('Production Release') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Release'
+            }
+        }
       }
     }
 }
+
+// add plugin cobertura
