@@ -16,6 +16,9 @@ beforeEach(() => {
             dataGateway: {
                 createTodo: jest.fn(),
             },
+            eventBus:{
+                emit: jest.fn()
+            }
         },
     };
     mockInput = {
