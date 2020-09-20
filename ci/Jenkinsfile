@@ -83,15 +83,16 @@ pipeline {
                     slackSend (color: '#FF0000', message: "Unit tests is BELOW required target: Job")
                 }
             }
-    //     stage('Development Build') {
-    //         when {
-    //             branch "develop"
-    //             beforeAgent true
-    //         }
-    //         steps { 
-    //             echo 'Development Build'
-    //         }
-    //     }
+        }
+        stage('Development Build') {
+            when {
+                branch "develop"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Development Build'
+            }
+        }
     //     stage('Development Release') {
     //         when {
     //             branch "develop"
