@@ -93,34 +93,33 @@ pipeline {
                 echo 'Development Build'
             }
         }
-    //     stage('Development Release') {
-    //         when {
-    //             branch "develop"
-    //             beforeAgent true
-    //         }
-    //         steps { 
-    //             echo 'Development Release'
-    //         }
-    //     }
-    //     stage('Production Build') {
-    //         when {
-    //             branch "master"
-    //             beforeAgent true
-    //         }
-    //         steps { 
-    //             echo 'Production Build'
-    //         }
-    //     }
-    //     stage('Production Release') {
-    //         when {
-    //             branch "master"
-    //             beforeAgent true
-    //         }
-    //         steps { 
-    //             echo 'Production Release'
-    //         }
-    //     }
-      
+        stage('Development Release') {
+            when {
+                branch "develop"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Development Release'
+            }
+        }
+        stage('Production Build') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Build'
+            }
+        }
+        stage('Production Release') {
+            when {
+                branch "master"
+                beforeAgent true
+            }
+            steps { 
+                echo 'Production Release'
+            }
+        }
     }
 }
 
