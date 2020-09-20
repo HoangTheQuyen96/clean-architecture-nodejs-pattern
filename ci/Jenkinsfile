@@ -1,5 +1,5 @@
 pipeline {
-    agent node 
+    agent any 
     options { 
         skipStagesAfterUnstable()
     }
@@ -62,7 +62,7 @@ TODO_TOPIC=todo_topic
     //       slackSend (color: '#FF0000', message: "Unit tests is BELOW required target: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     //     }
     //   }
-            }
+            // }
         }
     }
 }
