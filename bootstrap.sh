@@ -1,6 +1,6 @@
 #!/bin/bash
-apt-get update
-apt-get install -y build-essential python 
+sudo apt-get update
+sudo apt-get install -y build-essential python 
 
 wget https://nodejs.org/dist/v14.12.0/node-v14.12.0.tar.gz
 cd node-v14.12.0
@@ -18,7 +18,7 @@ sudo apt-get install -y unzip
 sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
 sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 rm -f $PROTOC_ZIP
-sudo apt-get remove unzip
+sudo apt-get remove -y unzip
 
 cat <<EOF > .env
 # Entrypoint HTTP Server
