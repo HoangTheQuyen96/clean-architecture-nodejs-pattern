@@ -114,7 +114,7 @@ check_install_docker_compose() {
 read_environment_file() {
     while IFS='=' read -r KEY VALUE
     do 
-        eval "ENV_$KEY"='$VALUE'
+        eval "$KEY"='$VALUE'
     done < .env.tmp
 }
 
