@@ -6,7 +6,7 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    sh "./bootstrap.sh"
+                    sh "sudo ./bootstrap.sh"
                }
           }
           stage("Unit test") {
