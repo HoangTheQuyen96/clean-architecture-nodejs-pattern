@@ -111,23 +111,24 @@ check_install_docker_compose() {
     fi
 }
 
-function read_environment_file() {
+read_environment_file() {
     while IFS='=' read -r KEY VALUE
     do 
         eval "ENV_$KEY"='$VALUE'
     done < .env.tmp
 }
 
-function append_zookeeper_kafka_mongo_to_docker_compose() {
+append_zookeeper_kafka_mongo_to_docker_compose() {
     read_environment_file
     echo "Generate docker-compose.yml..."
     cp docker-compose.tmp docker-compose.yml | tee -a install.log
     cat prepare_env.yml >> docker-compose.yml
 }
 
-function prepare_docker_compose_all() {
+prepare_docker_compose_all() {
    check_install_docker
    check_install_docker_compose
+   append_zookeeper_kafka_mongo_to_docker_compose
    sudo -v > /dev/null 2>/dev/null
 
    sudo docker-compose build | tee -a install.log
