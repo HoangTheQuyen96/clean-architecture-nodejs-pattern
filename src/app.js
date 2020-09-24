@@ -6,3 +6,4 @@ const { loadSingletons } = require("./configuration/infrastructure");
   require("./configuration/usecase");
 })();
 
+console.log(process.env)
