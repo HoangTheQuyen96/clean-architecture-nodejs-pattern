@@ -116,6 +116,7 @@ read_environment_file() {
     do 
         eval "$KEY"='$VALUE'
         echo ${KEY}
+        echo ${VALUE}
     done < .env.tmp
 }
 
