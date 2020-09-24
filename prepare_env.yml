@@ -1,6 +1,3 @@
-networks:
-    workspaces:
-      driver: bridge
     zookeeper:
         image: confluentinc/cp-zookeeper:5.3.1
         restart: always
