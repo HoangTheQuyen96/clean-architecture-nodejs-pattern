@@ -32,10 +32,12 @@
         ports:
             - 27017:27017
     app:
-        context: .
+        build:
+            context: .      
         restart: always
         ports:
             - 12000:12000
+            - 3333:3333
         depends_on:
             - mongo
             - kafka
